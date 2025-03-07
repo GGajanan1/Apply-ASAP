@@ -15,7 +15,7 @@ app.use(cors({
   }));
   const upload = multer({ dest: 'uploads/' });
 
-const API_KEY = process.env.API_KEY || 'AIzaSyCcoGmyBV6BcYHdeiDZEoARVDbdsohvHPk' ;
+const API_KEY = process.env.API_KEY ;
 
 app.post('/upload', upload.single('resume'), (req, res) => {
   const filePath = req.file.path;
