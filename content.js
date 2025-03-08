@@ -39,12 +39,13 @@ function fillForm(resumeData) {
         if (fieldName.includes("name")) value = resumeData.personalDetails.name || "";
         if (fieldName.includes("email")) value = resumeData.personalDetails.email || "";
         if (fieldName.includes("phone")) value = resumeData.personalDetails.phone || "";
-        if (fieldName.includes("linkedin")) value = resumeData.personalDetails.social_media.linkedin || "";
-        if (fieldName.includes("github")) value = resumeData.personalDetails.social_media.github || "";
+        if (fieldName.includes("linkedin")) value = "https://www.linkedin.com/in/"+resumeData.personalDetails.social_media.github || "";
+        if (fieldName.includes("github")) value = "https://github.com/"+resumeData.personalDetails.social_media.twitter || "";
         if (fieldName.includes("address")) value = resumeData.personalDetails.address || "";
-        if (fieldName.includes("city")) value = resumeData.personalDetails.city || "";
+        if (fieldName.includes("city") || fieldName.includes("location")) value = resumeData.personalDetails.city || "";
         if (fieldName.includes("state")) value = resumeData.personalDetails.state || "";
         if (fieldName.includes("zip")) value = resumeData.personalDetails.zip || "";
+        if (fieldName.includes("information") || fieldName.includes("additionalinformation")) value = resumeData.coverLetter || "";
 
         if (value) {
             updateField(field, value);

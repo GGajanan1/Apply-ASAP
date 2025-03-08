@@ -16,7 +16,7 @@ class AutofillWithResume {
       const extractedText = pdfData.text.trim().replace(/"/g, '\\"');
 
       const prompt = `
-      Extract the following details from the provided paragraph: name, website, email, phone number, LinkedIn, GitHub, Twitter (X), Facebook, education, skills, experience, projects, certifications, and achievements.
+      Extract the following details from the provided paragraph: name, website, email, phone number, LinkedIn, GitHub, Twitter (X), Facebook, education, skills, experience, projects, certifications, achievements, cover letter, and reason for joining the company.
       Please return **only** a valid JSON object without any extra text or comments.
       The result should be in the following JSON structure:
       {
@@ -25,7 +25,9 @@ class AutofillWithResume {
           "website": "Website extracted from the paragraph",
           "email": "Email address extracted from the paragraph",
           "phone": "Phone number extracted from the paragraph",
-          "social_media": {
+          "city": "City extracted from the paragraph",
+          "location": "Location extracted from the paragraph",
+          "social_media": { 
             "linkedin": "LinkedIn profile extracted from the paragraph",
             "github": "GitHub profile extracted from the paragraph",
             "twitter": "Twitter profile extracted from the paragraph",
@@ -134,13 +136,15 @@ class AutofillWithResume {
             "year": "Year extracted from the paragraph"
           },
           "..."
-        ]
+        ],
+        "coverLetter": "Cover letter paragraph generated based on the paragraph",
+        "reasonForJoining": "Reason for joining the company extracted from the paragraph"
       }
       Paragraph: ${extractedText}
     `;
 
-      const model = this.genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-      const result = await model.generateContent(prompt);
+    const model = this.genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+    const result = await model.generateContent(prompt);
       const response = await result.response;
       const generatedText = await response.text();
 
