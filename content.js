@@ -71,7 +71,7 @@ function observeAndFillForm() {
 
     setTimeout(() => {
         if (document.querySelector("input, textarea, select")) {
-            console.log("🔄 Checking form fields after timeout...");
+            console.log("Checking form fields after timeout...");
             getResumeData(fillForm);
         }
     }, 3000);
